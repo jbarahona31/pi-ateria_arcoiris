@@ -1,0 +1,19 @@
+# Dependencias de Node.js
+node_modules/
+npm-debug.log*
+
+# Archivos de entorno (contienen datos sensibles)
+.env
+backend/.env
+
+# Build del frontend
+frontend/dist/
+frontend/.vite/
+
+# Archivos del sistema operativo
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+logs/

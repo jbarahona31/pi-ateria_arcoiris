@@ -1,10 +1,30 @@
 // Servidor principal de la aplicación Piñatería y Papelería Arcoiris
 const express = require('express');
 const cors = require('cors');
+const rateLimit = require('express-rate-limit');
 require('dotenv').config();
 
 const app = express();
 const PORT = process.env.PORT || 5000;
+
+// ===== Rate limiting =====
+// Límite general: 200 peticiones por 15 minutos por IP
+const limiterGeneral = rateLimit({
+  windowMs: 15 * 60 * 1000,
+  max: 200,
+  standardHeaders: true,
+  legacyHeaders: false,
+  message: { error: 'Demasiadas peticiones. Por favor intente más tarde.' }
+});
+
+// Límite estricto para rutas de autenticación
+const limiterAuth = rateLimit({
+  windowMs: 15 * 60 * 1000,
+  max: 20,
+  standardHeaders: true,
+  legacyHeaders: false,
+  message: { error: 'Demasiados intentos de acceso. Por favor intente en 15 minutos.' }
+});
 
 // ===== Middlewares =====
 // Habilitar CORS para permitir peticiones desde el frontend
@@ -26,12 +46,12 @@ const dashboardRoutes = require('./routes/dashboardRoutes');
 const reportesRoutes = require('./routes/reportesRoutes');
 
 // Montar las rutas en sus respectivos prefijos
-app.use('/api/auth', authRoutes);
-app.use('/api/productos', productRoutes);
-app.use('/api/ventas', salesRoutes);
-app.use('/api/gastos', expensesRoutes);
-app.use('/api/dashboard', dashboardRoutes);
-app.use('/api/reportes', reportesRoutes);
+app.use('/api/auth', limiterAuth, authRoutes);
+app.use('/api/productos', limiterGeneral, productRoutes);
+app.use('/api/ventas', limiterGeneral, salesRoutes);
+app.use('/api/gastos', limiterGeneral, expensesRoutes);
+app.use('/api/dashboard', limiterGeneral, dashboardRoutes);
+app.use('/api/reportes', limiterGeneral, reportesRoutes);
 
 // Ruta raíz para verificar que el servidor está funcionando
 app.get('/', (req, res) => {

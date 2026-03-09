@@ -52,10 +52,12 @@ const createVenta = async (req, res) => {
     const ventaId = ventaResult.insertId;
 
     // Insertar cada item del detalle y reducir inventario
+    const itemsDetalle = [];
+
     for (const item of items) {
-      // Verificar que hay suficiente inventario
+      // Verificar que hay suficiente inventario y obtener nombre del producto
       const [producto] = await conn.query(
-        'SELECT cantidad FROM productos WHERE id = ?',
+        'SELECT nombre, cantidad FROM productos WHERE id = ?',
         [item.producto_id]
       );
 
@@ -80,13 +82,29 @@ const createVenta = async (req, res) => {
         'UPDATE productos SET cantidad = cantidad - ? WHERE id = ?',
         [item.cantidad, item.producto_id]
       );
+
+      itemsDetalle.push({
+        nombre: producto[0].nombre,
+        cantidad: item.cantidad,
+        precio: item.precio,
+        subtotal: item.cantidad * item.precio
+      });
     }
 
     await conn.commit();
 
+    // Obtener la fecha de la venta recién creada
+    const [ventaCreada] = await conn.query(
+      'SELECT fecha FROM ventas WHERE id = ?',
+      [ventaId]
+    );
+
     res.status(201).json({
       mensaje: 'Venta registrada exitosamente.',
-      venta_id: ventaId
+      venta_id: ventaId,
+      fecha: ventaCreada[0].fecha,
+      total,
+      items: itemsDetalle
     });
   } catch (error) {
     await conn.rollback();

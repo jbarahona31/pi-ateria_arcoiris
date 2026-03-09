@@ -1,6 +1,7 @@
 // Página de Ventas — sistema POS (punto de venta)
 import { useState, useEffect } from 'react'
 import { productosService, ventasService } from '../services/api'
+import Factura from '../components/Factura'
 
 function Ventas() {
   const [productos, setProductos] = useState([])
@@ -9,6 +10,7 @@ function Ventas() {
   const [cargando, setCargando] = useState(true)
   const [procesando, setProcesando] = useState(false)
   const [mensaje, setMensaje] = useState({ tipo: '', texto: '' })
+  const [facturaData, setFacturaData] = useState(null)
 
   // Cargar productos al iniciar
   useEffect(() => {
@@ -103,16 +105,36 @@ function Ventas() {
 
     try {
       setProcesando(true)
-      await ventasService.create({
-        items: carrito.map(({ producto_id, cantidad, precio }) => ({
+      // Guardar copia del carrito antes de limpiar
+      const carritoActual = [...carrito]
+      const totalActual = totalCarrito
+
+      const { data } = await ventasService.create({
+        items: carritoActual.map(({ producto_id, cantidad, precio }) => ({
           producto_id,
           cantidad,
           precio
         })),
-        total: totalCarrito
+        total: totalActual
       })
 
-      mostrarMensaje('exito', `✅ Venta registrada exitosamente. Total: $ ${totalCarrito.toLocaleString('es-CO')}`)
+      // Preparar datos de factura usando respuesta del backend o datos del carrito
+      const itemsFactura = (data.items && data.items.length > 0)
+        ? data.items
+        : carritoActual.map(item => ({
+            nombre: item.nombre,
+            cantidad: item.cantidad,
+            precio: item.precio,
+            subtotal: item.cantidad * item.precio
+          }))
+
+      setFacturaData({
+        venta_id: data.venta_id,
+        fecha: data.fecha || new Date().toISOString(),
+        total: data.total ?? totalActual,
+        items: itemsFactura
+      })
+
       setCarrito([])
       cargarProductos() // Actualizar stock
     } catch (err) {
@@ -124,6 +146,7 @@ function Ventas() {
 
   return (
     <div>
+      <Factura datos={facturaData} onCerrar={() => setFacturaData(null)} />
       <div className="page-header">
         <h1 className="page-titulo">🛒 Punto de Venta</h1>
       </div>

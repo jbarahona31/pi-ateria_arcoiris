@@ -29,16 +29,47 @@ function Factura({ datos, onCerrar }) {
       {/* Estilos de impresión */}
       <style>{`
         @media print {
-          body > * { display: none !important; }
-          .factura-print-area { display: block !important; }
-          .factura-overlay { position: static !important; background: none !important; }
+          /* Ocultar todo el contenido de la página */
+          body * {
+            visibility: hidden;
+          }
+
+          /* Mostrar solo el área de la factura y todos sus hijos */
+          .factura-print-area,
+          .factura-print-area * {
+            visibility: visible;
+          }
+
+          /* Posicionar la factura correctamente para impresión */
+          .factura-print-area {
+            position: fixed !important;
+            top: 0 !important;
+            left: 0 !important;
+            right: 0 !important;
+            bottom: 0 !important;
+            background: white !important;
+            z-index: 9999 !important;
+            display: flex !important;
+            justify-content: center !important;
+            align-items: flex-start !important;
+            padding: 0 !important;
+          }
+
+          /* Ajustar el modal para impresión */
           .factura-modal {
             box-shadow: none !important;
-            border: 1px solid #ccc !important;
+            border: none !important;
+            border-radius: 0 !important;
             max-height: none !important;
             overflow: visible !important;
+            max-width: 100% !important;
+            padding: 20px !important;
           }
-          .factura-botones { display: none !important; }
+
+          /* Ocultar los botones de acción */
+          .factura-botones {
+            display: none !important;
+          }
         }
       `}</style>
 

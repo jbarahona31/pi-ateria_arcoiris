@@ -66,25 +66,25 @@ function Reportes() {
       <div className="cards-grid">
         <Card
           titulo="Ventas del Día"
-          valor={`Q ${Number(ventasDia?.total || 0).toFixed(2)}`}
+          valor={`$ ${Number(ventasDia?.total || 0).toLocaleString('es-CO')}`}
           icono="☀️"
           color="verde"
         />
         <Card
           titulo="Ventas del Mes"
-          valor={`Q ${Number(ventasMes?.total || 0).toFixed(2)}`}
+          valor={`$ ${Number(ventasMes?.total || 0).toLocaleString('es-CO')}`}
           icono="📅"
           color="azul"
         />
         <Card
           titulo="Total Gastos"
-          valor={`Q ${Number(ganancias?.totalGastos || 0).toFixed(2)}`}
+          valor={`$ ${Number(ganancias?.totalGastos || 0).toLocaleString('es-CO')}`}
           icono="💸"
           color="rojo"
         />
         <Card
           titulo="Ganancias Totales"
-          valor={`Q ${Number(ganancias?.ganancias || 0).toFixed(2)}`}
+          valor={`$ ${Number(ganancias?.ganancias || 0).toLocaleString('es-CO')}`}
           icono="💰"
           color={ganancias?.ganancias >= 0 ? 'morado' : 'rojo'}
         />
@@ -96,7 +96,7 @@ function Reportes() {
           <div style={{ padding: '20px', borderBottom: '1px solid #F3F4F6' }}>
             <h2 style={{ fontWeight: '700', fontSize: '1rem' }}>☀️ Ventas del Día</h2>
             <p style={{ color: '#6B7280', fontSize: '0.875rem' }}>
-              Total: Q {Number(ventasDia?.total || 0).toFixed(2)} —
+              Total: $ {Number(ventasDia?.total || 0).toLocaleString('es-CO')} —
               {ventasDia?.ventas?.length || 0} transacciones
             </p>
           </div>
@@ -122,10 +122,10 @@ function Reportes() {
                     <td>#{v.id}</td>
                     <td>{v.num_items}</td>
                     <td style={{ fontWeight: '700', color: '#2EC4B6' }}>
-                      Q {Number(v.total).toFixed(2)}
+                      $ {Number(v.total).toLocaleString('es-CO')}
                     </td>
                     <td style={{ color: '#6B7280', fontSize: '0.875rem' }}>
-                      {new Date(v.fecha).toLocaleTimeString('es-GT')}
+                      {new Date(v.fecha).toLocaleTimeString('es-CO')}
                     </td>
                   </tr>
                 ))
@@ -139,7 +139,7 @@ function Reportes() {
           <div style={{ padding: '20px', borderBottom: '1px solid #F3F4F6' }}>
             <h2 style={{ fontWeight: '700', fontSize: '1rem' }}>📅 Ventas del Mes</h2>
             <p style={{ color: '#6B7280', fontSize: '0.875rem' }}>
-              Total: Q {Number(ventasMes?.total || 0).toFixed(2)} —
+              Total: $ {Number(ventasMes?.total || 0).toLocaleString('es-CO')} —
               {ventasMes?.ventas?.length || 0} transacciones
             </p>
           </div>
@@ -165,10 +165,10 @@ function Reportes() {
                     <td>#{v.id}</td>
                     <td>{v.num_items}</td>
                     <td style={{ fontWeight: '700', color: '#4361EE' }}>
-                      Q {Number(v.total).toFixed(2)}
+                      $ {Number(v.total).toLocaleString('es-CO')}
                     </td>
                     <td style={{ color: '#6B7280', fontSize: '0.875rem' }}>
-                      {new Date(v.fecha).toLocaleDateString('es-GT')}
+                      {new Date(v.fecha).toLocaleDateString('es-CO')}
                     </td>
                   </tr>
                 ))
@@ -216,7 +216,7 @@ function Reportes() {
                     <span className="badge badge-verde">{p.total_vendido} uds.</span>
                   </td>
                   <td style={{ fontWeight: '700', color: '#2EC4B6' }}>
-                    Q {Number(p.total_ingresos).toFixed(2)}
+                    $ {Number(p.total_ingresos).toLocaleString('es-CO')}
                   </td>
                 </tr>
               ))
@@ -235,14 +235,14 @@ function Reportes() {
             <div style={{ fontSize: '1.5rem', marginBottom: '8px' }}>📈</div>
             <div style={{ fontSize: '0.85rem', color: '#6B7280', marginBottom: '4px' }}>Total Ventas</div>
             <div style={{ fontSize: '1.4rem', fontWeight: '800', color: '#16A34A' }}>
-              Q {Number(ganancias?.totalVentas || 0).toFixed(2)}
+              $ {Number(ganancias?.totalVentas || 0).toLocaleString('es-CO')}
             </div>
           </div>
           <div style={{ textAlign: 'center', padding: '20px', background: '#FEF2F2', borderRadius: '12px' }}>
             <div style={{ fontSize: '1.5rem', marginBottom: '8px' }}>💸</div>
             <div style={{ fontSize: '0.85rem', color: '#6B7280', marginBottom: '4px' }}>Total Gastos</div>
             <div style={{ fontSize: '1.4rem', fontWeight: '800', color: '#DC2626' }}>
-              Q {Number(ganancias?.totalGastos || 0).toFixed(2)}
+              $ {Number(ganancias?.totalGastos || 0).toLocaleString('es-CO')}
             </div>
           </div>
           <div style={{
@@ -258,7 +258,7 @@ function Reportes() {
               fontSize: '1.4rem', fontWeight: '800',
               color: ganancias?.ganancias >= 0 ? '#1D4ED8' : '#DC2626'
             }}>
-              Q {Number(ganancias?.ganancias || 0).toFixed(2)}
+              $ {Number(ganancias?.ganancias || 0).toLocaleString('es-CO')}
             </div>
           </div>
         </div>

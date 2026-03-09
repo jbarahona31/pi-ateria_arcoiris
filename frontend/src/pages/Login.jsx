@@ -37,7 +37,7 @@ function Login() {
   return (
     <div className="login-page">
       <div className="login-card">
-        <span className="login-logo">🌈</span>
+        <img src="/logo.png" alt="Arcoiris Logo" className="login-logo" style={{ width: '90px', height: '90px', borderRadius: '50%', objectFit: 'cover', marginBottom: '8px' }} />
         <h1 className="login-titulo">Piñatería y Papelería</h1>
         <p className="login-subtitulo">Arcoiris — Sistema de Gestión</p>
 

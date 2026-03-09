@@ -16,7 +16,7 @@ function Sidebar() {
   return (
     <aside className="sidebar">
       <div className="sidebar-header">
-        <span className="sidebar-emoji">🌈</span>
+        <img src="/logo.png" alt="Arcoiris Logo" style={{ width: '60px', height: '60px', borderRadius: '50%', objectFit: 'cover', border: '2px solid white' }} />
         <div className="sidebar-titulo">
           Piñatería y<br />Papelería Arcoiris
         </div>

@@ -112,7 +112,7 @@ function Ventas() {
         total: totalCarrito
       })
 
-      mostrarMensaje('exito', `✅ Venta registrada exitosamente. Total: Q ${totalCarrito.toFixed(2)}`)
+      mostrarMensaje('exito', `✅ Venta registrada exitosamente. Total: $ ${totalCarrito.toLocaleString('es-CO')}`)
       setCarrito([])
       cargarProductos() // Actualizar stock
     } catch (err) {
@@ -177,7 +177,7 @@ function Ventas() {
                       {producto.categoria}
                     </div>
                     <div style={{ fontSize: '1.2rem', fontWeight: '800', color: '#4361EE' }}>
-                      Q {Number(producto.precio).toFixed(2)}
+                      $ {Number(producto.precio).toLocaleString('es-CO')}
                     </div>
                     <div style={{ fontSize: '0.8rem', color: '#6B7280', marginTop: '4px' }}>
                       Stock: {producto.cantidad}
@@ -211,7 +211,7 @@ function Ventas() {
                   <div>
                     <div className="carrito-item-nombre">{item.nombre}</div>
                     <div style={{ fontSize: '0.8rem', color: '#6B7280' }}>
-                      Q {item.precio.toFixed(2)} c/u
+                      $ {item.precio.toLocaleString('es-CO')} c/u
                     </div>
                   </div>
                   <div className="carrito-item-cantidad">
@@ -223,7 +223,7 @@ function Ventas() {
                   </div>
                   <div>
                     <div style={{ fontWeight: '700', color: '#4361EE', marginBottom: '4px' }}>
-                      Q {(item.precio * item.cantidad).toFixed(2)}
+                      $ {(item.precio * item.cantidad).toLocaleString('es-CO')}
                     </div>
                     <button
                       style={{ background: 'none', border: 'none', cursor: 'pointer', color: '#EF4444', fontSize: '1rem' }}
@@ -239,7 +239,7 @@ function Ventas() {
 
           <div style={{ borderTop: '2px solid #F3F4F6', paddingTop: '16px' }}>
             <div className="carrito-total">
-              Total: Q {totalCarrito.toFixed(2)}
+              Total: $ {totalCarrito.toLocaleString('es-CO')}
             </div>
             <button
               className="btn btn-verde"

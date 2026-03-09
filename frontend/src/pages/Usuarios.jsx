@@ -186,7 +186,7 @@ function Usuarios() {
                       </td>
                       <td style={{ color: '#6B7280', fontSize: '0.875rem' }}>
                         {usuario.fecha_creacion
-                          ? new Date(usuario.fecha_creacion).toLocaleDateString('es-GT')
+                          ? new Date(usuario.fecha_creacion).toLocaleDateString('es-CO')
                           : '—'}
                       </td>
                       <td>

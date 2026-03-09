@@ -5,6 +5,7 @@ import Inventario from './pages/Inventario'
 import Ventas from './pages/Ventas'
 import Gastos from './pages/Gastos'
 import Reportes from './pages/Reportes'
+import Usuarios from './pages/Usuarios'
 import Sidebar from './components/Sidebar'
 import Navbar from './components/Navbar'
 
@@ -72,6 +73,13 @@ function App() {
           <PrivateRoute>
             <MainLayout>
               <Reportes />
+            </MainLayout>
+          </PrivateRoute>
+        } />
+        <Route path="/usuarios" element={
+          <PrivateRoute>
+            <MainLayout>
+              <Usuarios />
             </MainLayout>
           </PrivateRoute>
         } />

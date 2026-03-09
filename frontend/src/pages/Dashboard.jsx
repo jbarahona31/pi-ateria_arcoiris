@@ -79,8 +79,8 @@ function Dashboard() {
 
       {/* Sección de bienvenida */}
       <div className="tabla-container" style={{ padding: '32px', textAlign: 'center' }}>
-        <div style={{ fontSize: '4rem', marginBottom: '16px' }}>
-          <img src="/logo.png" alt="Arcoiris Logo" style={{ width: '100px', height: '100px', borderRadius: '50%', objectFit: 'cover', marginBottom: '16px' }} />
+        <div style={{ marginBottom: '16px' }}>
+          <img src="/logo.png.jpeg" alt="Arcoiris Logo" style={{ width: '100px', height: '100px', borderRadius: '50%', objectFit: 'cover' }} />
         </div>
         <h2 style={{ fontSize: '1.5rem', fontWeight: '700', marginBottom: '8px' }}>
           Bienvenido al Sistema de Gestión

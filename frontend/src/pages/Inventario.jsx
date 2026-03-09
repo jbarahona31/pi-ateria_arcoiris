@@ -170,14 +170,14 @@ function Inventario() {
                     <td>
                       <span className="badge badge-azul">{p.categoria || '—'}</span>
                     </td>
-                    <td>Q {Number(p.precio).toFixed(2)}</td>
+                    <td>$ {Number(p.precio).toLocaleString('es-CO')}</td>
                     <td>
                       <span className={`badge ${p.cantidad <= 5 ? 'badge-rojo' : 'badge-verde'}`}>
                         {p.cantidad}
                       </span>
                     </td>
                     <td style={{ color: '#6B7280', fontSize: '0.875rem' }}>
-                      {new Date(p.fecha_registro).toLocaleDateString('es-GT')}
+                      {new Date(p.fecha_registro).toLocaleDateString('es-CO')}
                     </td>
                     <td>
                       <div style={{ display: 'flex', gap: '8px' }}>
@@ -235,7 +235,7 @@ function Inventario() {
                 />
               </div>
               <div className="form-group">
-                <label className="form-label">Precio (Q) *</label>
+                <label className="form-label">Precio (COP) *</label>
                 <input
                   type="number"
                   name="precio"

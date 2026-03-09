@@ -28,7 +28,7 @@ function Dashboard() {
 
   // Formatear como moneda
   const formatearMoneda = (valor) =>
-    `Q ${Number(valor || 0).toFixed(2)}`
+    `$ ${Number(valor || 0).toLocaleString('es-CO')}`
 
   if (cargando) {
     return (
@@ -79,7 +79,9 @@ function Dashboard() {
 
       {/* Sección de bienvenida */}
       <div className="tabla-container" style={{ padding: '32px', textAlign: 'center' }}>
-        <div style={{ fontSize: '4rem', marginBottom: '16px' }}>🌈</div>
+        <div style={{ fontSize: '4rem', marginBottom: '16px' }}>
+          <img src="/logo.png" alt="Arcoiris Logo" style={{ width: '100px', height: '100px', borderRadius: '50%', objectFit: 'cover', marginBottom: '16px' }} />
+        </div>
         <h2 style={{ fontSize: '1.5rem', fontWeight: '700', marginBottom: '8px' }}>
           Bienvenido al Sistema de Gestión
         </h2>

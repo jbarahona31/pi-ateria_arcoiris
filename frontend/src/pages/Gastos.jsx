@@ -104,7 +104,7 @@ function Gastos() {
                 />
               </div>
               <div className="form-group">
-                <label className="form-label">Valor (Q) *</label>
+                <label className="form-label">Valor (COP) *</label>
                 <input
                   type="number"
                   name="valor"
@@ -132,7 +132,7 @@ function Gastos() {
           <div className="card card-rojo" style={{ marginTop: '16px' }}>
             <span className="card-icono">💸</span>
             <div className="card-titulo">Total en Gastos</div>
-            <div className="card-valor">Q {totalGastos.toFixed(2)}</div>
+            <div className="card-valor">$ {totalGastos.toLocaleString('es-CO')}</div>
           </div>
         </div>
 
@@ -164,10 +164,10 @@ function Gastos() {
                       <td>{gasto.id}</td>
                       <td style={{ fontWeight: '600' }}>{gasto.concepto}</td>
                       <td style={{ color: '#EF4444', fontWeight: '700' }}>
-                        Q {Number(gasto.valor).toFixed(2)}
+                        $ {Number(gasto.valor).toLocaleString('es-CO')}
                       </td>
                       <td style={{ color: '#6B7280', fontSize: '0.875rem' }}>
-                        {new Date(gasto.fecha).toLocaleDateString('es-GT')}
+                        {new Date(gasto.fecha).toLocaleDateString('es-CO')}
                       </td>
                       <td>
                         <button

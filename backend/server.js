@@ -41,17 +41,6 @@ app.use(cors({
 
 app.use(express.json());
 
-app.get('/ping', (req, res) => {
-  res.send('pong 🏓');
-});
-
-// ===== RUTAS PRINCIPALES =====
-
-// Ruta raíz
-app.get('/', (req, res) => {
-  res.json({ mensaje: '🌈 API Piñatería y Papelería Arcoiris funcionando correctamente' });
-});
-
 // 🔥 RUTA PARA PROBAR BASE DE DATOS
 app.get('/test-db', (req, res) => {
   db.query('SELECT 1', (err, result) => {
@@ -62,6 +51,15 @@ app.get('/test-db', (req, res) => {
     res.json({ message: '✅ Conexión a MySQL exitosa 🚀' });
   });
 });
+
+// ===== RUTAS PRINCIPALES =====
+
+// Ruta raíz
+app.get('/', (req, res) => {
+  res.json({ mensaje: '🌈 API Piñatería y Papelería Arcoiris funcionando correctamente' });
+});
+
+
 
 // ===== IMPORTAR RUTAS =====
 const authRoutes = require('./routes/authRoutes');
